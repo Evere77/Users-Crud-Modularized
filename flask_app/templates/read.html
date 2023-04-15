@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/bootstrap.css') }}">
+  <title>Users CRUD</title>
+</head>
+<body class="container">
+  <h1 class="text-center mt-5">All Users</h1>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Created At</th>
+        <th colspan="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{user.id}}</td>
+          <td>{{user.first_name}} {{user.last_name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.created_at.strftime("%b %d %Y")}}</td>
+          <td>
+            <a href="/user/show/{{user.id}}">Show</a> |
+            <a href="/user/edit/{{user.id}}">Edit</a> |
+            <a href="/user/destroy/{{user.id}}">Delete</a> 
+          </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  <form action="/user/new">
+    <button type="submit" class="btn btn-outline-secondary btn-sm ml-2 mt-4">Add a New User</button>
+  </form>
+</body>
+</html>

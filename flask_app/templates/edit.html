@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/bootstrap.css') }}">
+  <title>Edit User</title>
+</head>
+<body class="container">
+  <div class="d-flex justify-content-between mt-5">
+    <h2 class="text-center">Edit User {{user.id}}</h2>
+    <form action="/users">
+      <button type="submit" class="btn btn-outline-secondary btn-sm ml-4">Home</button>
+    </form>
+  </div>
+  <form action="/user/update" method="POST">
+    <div class="form-group mt-3">
+      <input type="hidden" name="id" value="{{user.id}}">
+      <label for="first_name">First Name:</label>
+      <input type="text" name="first_name" class="form-control" value="{{user.first_name}}">
+    </div>
+    <div class="form-group">
+      <label for="last_name">Last Name:</label>
+      <input type="text" name="last_name" class="form-control" value="{{user.last_name}}">
+    </div>
+    <div class="form-group">
+      <label for="email" >Email:</label>
+      <input type="text" name="email" class="form-control" value="{{user.email}}">
+    </div>
+        <button type="submit" value="Update User" class="btn btn-outline-secondary btn-sm ml-2 mt-4">Update User</button>
+        <a href="/user/show/{{user.id}}" class="align-bottom pl-5">Show User</a>
+  </form>
+</body>
+</html>
